@@ -2,8 +2,8 @@
 
 namespace Newpixel\PartnerCRUD\App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Backpack\CRUD\CrudTrait;
+use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model
 {
@@ -40,6 +40,7 @@ class Partner extends Model
     {
         return $query->where('active', true);
     }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
@@ -59,12 +60,13 @@ class Partner extends Model
     */
     public function getImageImageAttribute()
     {
-        ($this->image && \File::exists(public_path('images/storage/partners' . $this->image)))
-            ? $url = \URL::asset('images/storage/partners' . $this->image)
+        ($this->image && \File::exists(public_path('images/storage/partners'.$this->image)))
+            ? $url = \URL::asset('images/storage/partners'.$this->image)
             : $url = \URL::asset('images/template/nopic.jpg');
 
         return $url;
     }
+
     /*
     |--------------------------------------------------------------------------
     | MUTATORS
@@ -72,9 +74,9 @@ class Partner extends Model
     */
     public function setImageAttribute($file)
     {
-        $attribute_name = "image";
-        $disk = "public";
-        $destination_path = "partners";
+        $attribute_name = 'image';
+        $disk = 'public';
+        $destination_path = 'partners';
 
         // if the image was erased
         if ($file == null) {
@@ -84,16 +86,16 @@ class Partner extends Model
 
         if (starts_with($file, 'data:image')) {
             \Storage::disk($disk)->delete($this->image);
-            $filename = str_slug($this->slug_or_name . time()) . '.jpg';
+            $filename = str_slug($this->slug_or_name.time()).'.jpg';
 
             $img = \Image::make($file)->resize(140, 100, function ($pict) {
                 $pict->aspectRatio();
                 $pict->upsize();
             });
             $img->resizeCanvas(140, 100, 'center', false, '#fff');
-            \Storage::disk($disk)->put($destination_path . '/' . $filename, $img->stream());
+            \Storage::disk($disk)->put($destination_path.'/'.$filename, $img->stream());
 
-            $this->attributes[$attribute_name] = $destination_path . '/' . $filename;
+            $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
         }
     }
 }

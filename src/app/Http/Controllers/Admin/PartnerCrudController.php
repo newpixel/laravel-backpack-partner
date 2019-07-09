@@ -3,14 +3,12 @@
 namespace Newpixel\PartnerCRUD\App\Http\Controllers\Admin;
 
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-
 // VALIDATION: change the requests to match your own file names if you need form validation
 use Newpixel\PartnerCRUD\App\Http\Requests\PartnerRequest as StoreRequest;
 use Newpixel\PartnerCRUD\App\Http\Requests\PartnerRequest as UpdateRequest;
 
 /**
- * Class PartnerCrudController
- * @package App\Http\Controllers\Admin
+ * Class PartnerCrudController.
  * @property-read CrudPanel $crud
  */
 class PartnerCrudController extends CrudController
@@ -23,7 +21,7 @@ class PartnerCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
         $this->crud->setModel('Newpixel\PartnerCRUD\App\Models\Partner');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/partner');
+        $this->crud->setRoute(config('backpack.base.route_prefix').'/partner');
         $this->crud->setEntityNameStrings('partener', 'parteneri');
 
         /*
@@ -62,7 +60,7 @@ class PartnerCrudController extends CrudController
                 'name'    => 'active',
                 'label'   => 'Activ',
                 'type'    => 'radio',
-                'options' => [0 => "Nu", 1 => "Da"],
+                'options' => [0 => 'Nu', 1 => 'Da'],
                 'inline'  => false,
             ],
         ]);
@@ -78,7 +76,7 @@ class PartnerCrudController extends CrudController
                 'name'              => 'active',
                 'label'             => 'Activ',
                 'type'              => 'radio',
-                'options'           => [ 0 => "Nu", 1 => "Da"],
+                'options'           => [0 => 'Nu', 1 => 'Da'],
                 'inline'            => true,
                 'wrapperAttributes' => ['class' => 'form-group col-md-2'],
             ],
