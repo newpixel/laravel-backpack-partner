@@ -66,7 +66,6 @@ class PartnerCRUDServiceProvider extends ServiceProvider
 
         // Setup the routes
         $this->setupRoutes($this->app->router);
-
     }
 
     /**
